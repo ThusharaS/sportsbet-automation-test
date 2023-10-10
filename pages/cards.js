@@ -25,7 +25,7 @@ exports.CardPage = class CardPage {
     async getElementText(selector, skipIndex) {
         const elementTexts = [];
         var count = 0;
-        for (let i = 0; i < 5; i=i+skipIndex) {
+        for (let i = 0; i < 3; i=i+skipIndex) {
             count++;
             var element = selector.nth(i);
             await element.waitFor();
@@ -38,7 +38,7 @@ exports.CardPage = class CardPage {
     }
 
     async addBets(){
-        for (let i = 0; i < 5; i+=2) {
+        for (let i = 0; i < 3; i+=2) {
             var element = await this.price.nth(i);
             await element.click();
             if(i==0){
