@@ -2,9 +2,6 @@ import { test, expect } from '@playwright/test';
 import { Homepage } from '../pages/home';
 import { CardPage } from '../pages/cards';
 
-const assert = require('assert');
-
-
 //Setting viewport 
 test.use({
   viewport: { width: 420, height: 420 },
@@ -33,7 +30,9 @@ test('test', async ({ page }) => {
   console.log('Actual rateCardNames '+ addedBetNames)
   console.log('Actual rateCardPrice '+ addedBetPrice)
 
-  assert.deepStrictEqual(rateCardNames, addedBetNames, 'Added Bet Names are not present in Bet Slip!');
-  assert.deepStrictEqual(rateCardPrice, addedBetPrice, 'Added Bet Price are not present in Bet Slip!');
+  await expect(await Card.betTitles.nth(0)).toContainText(rateCardNames[0]);
+  await expect(await Card.betTitles.nth(1)).toContainText(rateCardNames[1]);
+  await expect(await Card.betOdds.nth(0)).toContainText(rateCardPrice[0]);
+  await expect(await Card.betOdds.nth(1)).toContainText(rateCardPrice[1]);
 
 });
